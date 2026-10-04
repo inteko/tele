@@ -2,7 +2,7 @@
 
 every tele patch, grouped by the release that brought it, newest first. [features](features.md) has the same rows grouped by settings page. release notes and the in-app what's new are made from these rows, so their format is strict: see [the patch row](development.md#the-patch-row).
 
-all 265 patches, newest release first.
+all 266 patches, newest release first.
 
 ### [tele 16](https://github.com/nitreojs/tele/releases/tag/v7.2.9-tele.16)
 
@@ -60,6 +60,7 @@ all 265 patches, newest release first.
 | [263](../patches/tdesktop/0263-feat-never-open-web-apps-in-fullscreen.patch) | mini apps always open in a window and can't go fullscreen | tele → bots, off |
 | [264](../patches/tdesktop/0264-fix-fullscreen-border-only-on-the-main-window.patch) | fullscreen windows like the media viewer no longer have a 1 px gap at the edges (windows) | with 36 |
 | [265](../patches/Telegram/lib_ui/0001-fix-fullscreen-mini-apps-cover-the-screen-with-their.patch) | a mini app that opens in fullscreen covers the screen from its corner, with its ⋮ and ✕ buttons, instead of hanging off the screen (windows) | always on |
+| [266](../patches/tdesktop/0265-feat-forward-messages-one-by-one.patch) | forwarded messages go out one at a time instead of as one batch. albums stay together, and forwarding many at once can hit rate limits | tele → sending, off |
 
 ### [tele 14](https://github.com/nitreojs/tele/releases/tag/v7.2.9-tele.14)
 
