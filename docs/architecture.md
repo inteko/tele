@@ -42,7 +42,7 @@ ci/update-public-key.pem      public key of the update feed signature
 
 `.gitattributes` stores `*.patch` byte for byte (`-text`), so git never rewrites line endings inside a patch.
 
-there are no submodule patches yet, only `patches/tdesktop/`. `tele.py` already handles submodule groups.
+most patches are in `patches/tdesktop/`. submodule patches live next to them under the submodule's path, e.g. `patches/Telegram/lib_ui/` and `patches/Telegram/ThirdParty/libprisma/`.
 
 ## tele.py
 

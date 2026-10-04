@@ -38,6 +38,7 @@ settings → tele → interface.
 | [195](../patches/tdesktop/0195-feat-page-keys-in-lists-and-safer-box-edges.patch) | page up, page down, home and end scroll lists and boxes, and a click just outside a box no longer closes it | tele → interface, off |
 | [196](../patches/tdesktop/0196-feat-search-filter-and-export-star-transactions.patch) | search, filter, total and export star and ton transactions to csv | tele → interface, off |
 | [197](../patches/tdesktop/0197-feat-filter-long-lists-by-date.patch) | filter star and ton transactions, shared media and profile gifts by a day or a date range | tele → interface, off |
+| [238](../patches/tdesktop/0238-fix-unsorted-folder-keeps-unread-chats.patch) | the unsorted folder keeps chats with unread messages | with 165 |
 
 ## chats
 
@@ -66,6 +67,8 @@ settings → tele → chats.
 | [171](../patches/tdesktop/0171-feat-regex-search-in-loaded-history.patch) | a .* button in the chat search finds messages by regex among the loaded ones, without asking the server | tele → chats, off |
 | [179](../patches/tdesktop/0179-feat-sticker-captions.patch) | show the text attached to stickers in a bubble under them, and send or edit stickers with a caption | tele → chats, off |
 | [183](../patches/tdesktop/0183-feat-copy-or-delete-aliases-from-their-menu.patch) | right-click an alias in a profile or a message to copy or delete it, or open the profile | with 72 |
+| [218](../patches/tdesktop/0218-feat-quote-sticker-captions.patch) | select part of a sticker's caption and quote it in a reply | with 179 |
+| [248](../patches/tdesktop/0248-feat-your-own-reaction-strip.patch) | choose how many reactions sit above the message menu and their order: click a reaction in the live preview to replace and pin it, drag to reorder | tele → chats, off |
 
 ## messages
 
@@ -99,6 +102,9 @@ settings → tele → messages.
 | [176](../patches/tdesktop/0176-feat-choose-how-quoted-names-of-deleted-messages-lin.patch) | the name in a quote of a deleted message can link to the author's profile or mention them | with 19 |
 | [186](../patches/tdesktop/0186-feat-keep-deleted-messages-and-edit-history-after-a-.patch) | kept deleted messages and edit history survive a restart, encrypted, for 1, 7 or 30 days or forever | with 19 |
 | [203](../patches/tdesktop/0203-feat-quote-rich-messages.patch) | select part of a rich message and pick quote and reply: the rich editor opens with the selection as a blockquote. a quote without an author no longer disappears when it's sent | tele → messages, on |
+| [216](../patches/tdesktop/0216-feat-multiple-quotes-in-one-reply.patch) | quote several parts of a message in one reply: quoting again while replying with a quote adds the new part | tele → messages, on |
+| [234](../patches/tdesktop/0234-perf-keep-deleted-messages-without-stalling.patch) | kept deleted messages are saved without freezing tele. older tele versions can't read the kept history after this update | with 186 |
+| [257](../patches/tdesktop/0257-fix-last-code-line-number-sits-on-its-line.patch) | the last line number of a code block sits on its line | with 145 |
 
 ## sending
 
@@ -130,6 +136,11 @@ settings → tele → sending.
 | [164](../patches/tdesktop/0164-feat-translate-your-message-before-sending.patch) | translate your message before sending from the field's right-click menu or the send menu. ctrl+z brings the original back | tele → sending, on |
 | [178](../patches/tdesktop/0178-feat-attach-media-above-the-field-is-out-of-beta.patch) | attaching media above the field is out of beta | with 109 |
 | [180](../patches/tdesktop/0180-feat-inline-calcmula-results-after.patch) | type an expression and = to see the calcmula result greyed out after it, → or tab inserts it | with 46 |
+| [235](../patches/tdesktop/0235-fix-send-scheduled-messages-on-time-in-archived-chat.patch) | scheduled messages in archived chats are sent on time too, and one that can't be sent says why | with 97 |
+| [236](../patches/tdesktop/0236-feat-see-and-release-messages-queued-behind-an-uploa.patch) | messages waiting behind an upload say what they wait for, and can be sent now or dropped from their menu | with 51 |
+| [249](../patches/tdesktop/0249-feat-captioned-stickers-go-to-the-docked-media.patch) | stickers with a caption go to the media attached above the field, and stickers and gifs can be attached there from their panels | with 109 |
+| [255](../patches/tdesktop/0255-feat-choose-how-silent-videos-are-sent.patch) | choose whether videos without sound are sent as gifs or as videos | tele → sending |
+| [259](../patches/tdesktop/0259-feat-markdown-renders-as-you-type.patch) | markdown renders while you type: bold, italic, strike, spoilers, code and code blocks, with the markers kept and dimmed. lines starting with > become quotes, >! expandable quotes | tele → sending, off |
 
 ## notifications
 
@@ -143,6 +154,11 @@ settings → tele → notifications.
 | [159](../patches/tdesktop/0159-feat-mute-folders-and-silence-chats-completely.patch) | mute a whole folder on this device, and silence chats completely, mentions and replies included | tele → notifications, on |
 | [210](../patches/tdesktop/0210-feat-notification-centre.patch) | a notification centre in the main menu: tele toasts, updates, sent crash reports, online alerts and server notices in one list, kept per account for 30 days | tele → notifications, on |
 | [211](../patches/tdesktop/0211-feat-rate-limit-notices.patch) | rate limits show a toast with a countdown from 5 seconds, a bar above the chat list from a minute, and a notice when they end, instead of a silent hang | with 210 |
+| [219](../patches/tdesktop/0219-fix-rate-limit-notices-for-slowmode-and-download-thr.patch) | slowmode and download throttling count as rate limits too, and rate limits can be logged in the notification centre | tele → notifications, on |
+| [245](../patches/tdesktop/0245-feat-mentions-and-replies-in-the-notification-centre.patch) | mentions and replies from groups, muted ones included, are logged in the notification centre. click one to open the message | tele → notifications, on |
+| [252](../patches/tdesktop/0252-fix-notification-centre-shows-whole-entries.patch) | the notification centre shows whole entries, long ones with show more, and plays the press ripple | with 210 |
+| [253](../patches/tdesktop/0253-feat-copied-values-in-the-notification-centre.patch) | copy toasts are logged in the notification centre with the copied value: click it to copy it again | tele → notifications, on |
+| [260](../patches/tdesktop/0260-feat-reply-and-mention-badges-in-the-notification-ce.patch) | replies and mentions in the notification centre have a reply or @ badge on the sender's userpic | with 245 |
 
 ## menus
 
@@ -162,6 +178,7 @@ settings → tele → menus.
 | [148](../patches/tdesktop/0148-feat-open-the-message-menu-next-to-the-bubble.patch) | right-clicking beside a bubble opens its message menu | tele → menus, off |
 | [152](../patches/tdesktop/0152-feat-open-view-as-tl-inside-tele.patch) | view as tl opens inside tele, titled with the object's constructor. with -teleoffline it opens in the browser | with 33 |
 | [174](../patches/tdesktop/0174-feat-rearrange-menus-with-groups-and-submenus-in-a-m.patch) | tele's own layout for the message, chat, profile, chat list, folder, send and field menus, with groups, submenus and thin or thick separators. an editor rearranges, hides and groups items with a live preview and presets, alt+right-click opens it from a menu | tele → menus |
+| [240](../patches/tdesktop/0240-fix-shots-without-time-keep-reactions-below-the-text.patch) | shots without the time keep reactions under the text | with 114 |
 
 ## privacy
 
@@ -181,6 +198,11 @@ settings → tele → privacy.
 | [163](../patches/tdesktop/0163-feat-streamer-mode.patch) | streamer mode: tele is hidden from screen capture, notifications show no names or text, and your phone number is hidden | tele → privacy, off |
 | [169](../patches/tdesktop/0169-feat-hide-messages-by-keyword-or-regex.patch) | hide messages by keyword or regex, everywhere and per chat, like ignored users | tele → privacy |
 | [191](../patches/tdesktop/0191-feat-local-password-for-stars-and-gift-actions.patch) | a local password before transferring, converting, selling, upgrading, buying or sending gifts, paid reactions, paid media and subscriptions, each switchable | tele → privacy |
+| [224](../patches/tdesktop/0224-feat-local-password-for-bot-payments-and-paid-messag.patch) | the local password can also be asked before bot payments, paid messages and suggested posts | with 191 |
+| [226](../patches/tdesktop/0226-fix-streamer-mode-hides-the-title-and-every-phone-nu.patch) | streamer mode also hides the window title and every phone number, not only yours | with 163 |
+| [237](../patches/tdesktop/0237-feat-show-pending-ghost-scheduled-messages.patch) | messages ghost mode holds back to send later show in the chat: right-click one to send it now or cancel it | tele → privacy, on |
+| [239](../patches/tdesktop/0239-feat-ignored-users-and-hidden-words-can-stay-silent.patch) | messages from ignored users and with hidden words don't notify or count as unread, and the chat list doesn't preview them | tele → privacy, on |
+| [242](../patches/tdesktop/0242-fix-invisible-stories-follow-ghost-settings-and-surv.patch) | watching stories invisibly follows per-chat ghost settings, keeps who you watched across restarts, and asks before a live story, which shows you to its author | with 4 |
 
 ## profiles and ids
 
@@ -210,6 +232,12 @@ settings → tele → profiles and ids.
 | [202](../patches/tdesktop/0202-feat-fake-gift-upgrades.patch) | fake upgrades: the real upgrade box and spin for any upgradable gift, with the model, backdrop and symbol rolled locally by rarity and the real next number. nothing is sent and no stars are spent | tele → profiles and ids, on |
 | [205](../patches/tdesktop/0205-feat-mark-gift-studio-tgs-exports.patch) | tgs stickers from the gift studio carry an invisible mark saying they were made with tele's gift studio. it holds no user, account, device or time data | with 201 |
 | [209](../patches/tdesktop/0209-feat-gift-grid-builder.patch) | a gift grid builder: fill a profile-like grid cell by cell with collectibles or regular gifts, custom ribbons, pins and hidden marks, drag to reorder, save grids, and export png, gif or mp4 with an optional profile frame | tele → profiles and ids |
+| [214](../patches/tdesktop/0214-feat-show-usernames-for-invisible-names.patch) | people whose name is empty or invisible show their @username instead, or a phrase you choose when they have none | tele → profiles and ids, off |
+| [215](../patches/tdesktop/0215-feat-show-hidden-characters.patch) | names, bios and other profile texts made only of invisible characters show those characters, so you can see something is there | tele → profiles and ids, off |
+| [220](../patches/tdesktop/0220-fix-gift-batches-survive-flood-waits-and-bad-items.patch) | bulk gift actions wait out telegram's limits and skip gifts that can't be done yet instead of stopping, then say what was skipped and why | with 194 |
+| [247](../patches/tdesktop/0247-feat-more-gifts-and-models-in-the-gift-studio.patch) | the gift studio opens on a random gift, lists the newest collections first, and adds the original model, your own .tgs models, regular gifts, a teddy bear collection and renaming the model, backdrop and symbol on the card | with 201 |
+| [261](../patches/tdesktop/0261-feat-open-anyone-s-gifts-in-the-gift-grid.patch) | open anyone's gifts, or one of their collections, in the gift grid, or import them into a grid. big grids scroll, rows can be left out of the export and single gifts hidden | with 209 |
+| [262](../patches/tdesktop/0262-feat-rarity-tiers-and-pills-in-the-gift-studio.patch) | crafted models show their rarity tier, and rarities in the gift studio sit in coloured pills | with 201 |
 
 ### gift studio
 
@@ -225,6 +253,10 @@ settings → tele → bots.
 |---|---|---|
 | [5](../patches/tdesktop/0005-feat-show-bot-button-payloads-in-tooltips.patch) | hovering a bot button shows what it carries: callback data, links, inline queries, web apps and more | tele → bots, off |
 | [67](../patches/tdesktop/0067-feat-send-inline-results-without-via.patch) | inline bot results go out as your own messages, without via @bot | tele → bots, off |
+| [244](../patches/tdesktop/0244-feat-show-the-start-parameter-on-the-start-button.patch) | a bot opened by a link shows the start parameter on its start button | tele → bots, off |
+| [246](../patches/tdesktop/0246-feat-no-edited-mark-on-bot-messages.patch) | bot messages don't show the edited mark, since bots edit messages to update them | tele → bots, off |
+| [256](../patches/tdesktop/0256-feat-skip-the-mini-app-terms-box-for-trusted-apps.patch) | links to a mini app you've already opened skip its terms box | tele → bots, off |
+| [263](../patches/tdesktop/0263-feat-never-open-web-apps-in-fullscreen.patch) | mini apps always open in a window and can't go fullscreen | tele → bots, off |
 
 ## debug
 
@@ -234,6 +266,7 @@ settings → tele → debug.
 |---|---|---|
 | [90](../patches/tdesktop/0090-feat-debug-logs-and-an-mtproto-inspector.patch) | a debug page: debug logs on or off, open the logs or tele folder, clear logs, and an mtproto inspector for the logs that filters requests, expands objects, opens entries on [schema.jppgr.am](https://schema.jppgr.am) and opens things from message and chat menus | tele → debug |
 | [199](../patches/tdesktop/0199-feat-mtproto-console.patch) | an mtproto console: call any api method with your own session in text, json or json5, with autocomplete, schema hints, validation, a result tree and history. destructive methods ask first, star methods ask for the local password | tele → debug, ctrl+alt+m |
+| [225](../patches/tdesktop/0225-fix-confirm-more-irreversible-methods-in-the-mtproto.patch) | the mtproto console asks before more methods that can't be undone | with 199 |
 
 ## server
 
@@ -264,6 +297,7 @@ settings → tele → updates.
 | [6](../patches/tdesktop/0006-feat-update-from-the-tele-github-releases.patch) | self-updates from these releases on windows, linux and macos, signed with ed25519 | tele → updates, on |
 | [39](../patches/tdesktop/0039-feat-show-what-s-new-in-tele-after-an-update.patch) | after an update, you get a message with what's new in that tele version, visible only to you. fresh installs skip it | tele → updates, on |
 | [75](../patches/tdesktop/0075-feat-show-what-s-new-in-a-local-tele-chat.patch) | what's new comes from a local tele chat with its own profile, grouped by settings page, once per account the first time you open it after an update. a button opens the full changelog | with 39 |
+| [241](../patches/tdesktop/0241-fix-retry-tele-updates-sooner-and-resume-downloads.patch) | tele updates retry sooner after a failure and continue a broken download instead of starting over | with 6 |
 
 ## everywhere
 
@@ -326,3 +360,21 @@ always on, or without a switch of their own.
 | [207](../patches/tdesktop/0207-feat-send-crash-reports-without-a-dump.patch) | after a crash, sending the report is offered even without a dump, from another version or after a graphics crash, with the reason in the window and in the report | always on |
 | [208](../patches/tdesktop/0208-feat-report-freezes.patch) | when tele freezes for 15 seconds it writes a dump, and the next launch offers to send a freeze report (windows and linux) | always on |
 | [213](../patches/tdesktop/0213-feat-copy-a-gift-collection-s-link.patch) | right-click a gift collection in a profile to copy its link or share it | always on |
+| [217](../patches/tdesktop/0217-feat-quote-voice-message-transcriptions.patch) | select part of a voice message's transcription and quote it in a reply | always on |
+| [221](../patches/tdesktop/0221-fix-say-why-a-download-couldn-t-be-saved.patch) | when a download can't be saved, tele says why, and a chat's download folder can be reset when it's gone | always on |
+| [222](../patches/tdesktop/0222-fix-retry-failed-upload-parts.patch) | a failed piece of an upload is retried instead of failing the whole file | always on |
+| [223](../patches/tdesktop/0223-fix-teleoffline-keeps-features-that-only-use-telegra.patch) | with -teleoffline, features that only talk to telegram (gif and video conversion, link previews, shots) keep working | always on |
+| [227](../patches/tdesktop/0227-fix-deletions-that-fail-on-the-server-come-back.patch) | messages whose deletion fails on the server come back with a note instead of silently disappearing | always on |
+| [228](../patches/tdesktop/0228-feat-retry-failed-messages.patch) | failed messages can all be sent again at once from the menu of any of them | always on |
+| [229](../patches/tdesktop/0229-feat-find-any-group-member-when-mentioning.patch) | typing @ in a big group finds any member on the server, not only the ones already loaded | always on |
+| [230](../patches/tdesktop/0230-fix-load-the-call-log-in-the-right-page-sizes.patch) | the call log loads all of its pages | always on |
+| [231](../patches/tdesktop/0231-fix-read-archived-stickers-from-cache-for-every-acco.patch) | archived sticker sets show for every account, not only the first | always on |
+| [232](../patches/tdesktop/0232-fix-retry-loading-gift-collections.patch) | gift collections that fail to load are retried | always on |
+| [233](../patches/tdesktop/0233-fix-shared-media-calendar-follows-the-open-sublist.patch) | the shared media calendar jumps within the saved messages chat you have open | always on |
+| [243](../patches/tdesktop/0243-fix-tgs-stickers-telegram-would-reject.patch) | a .tgs sticker with the gzip header most windows tools write is fixed before sending, so telegram doesn't turn it into a file, and gift studio exports always load as stickers | always on |
+| [250](../patches/tdesktop/0250-feat-browse-every-tele-version-s-changes.patch) | browse and search every tele version's changes | with 112 |
+| [251](../patches/tdesktop/0251-fix-late-sent-messages-show-their-real-sent-time.patch) | a message that went out late shows the time telegram actually sent it | always on |
+| [254](../patches/tdesktop/0254-feat-what-s-new-as-a-settings-page-with-live-toggles.patch) | what's new is a settings page: every setting a version added is a live toggle right there | with 250 |
+| [258](../patches/tdesktop/0258-feat-live-previews-in-settings.patch) | the ghost mode, invisible names and peer ids settings show a live preview of what they change | always on |
+| [264](../patches/tdesktop/0264-fix-fullscreen-border-only-on-the-main-window.patch) | fullscreen windows like the media viewer no longer have a 1 px gap at the edges (windows) | with 36 |
+| [265](../patches/Telegram/lib_ui/0001-fix-fullscreen-mini-apps-cover-the-screen-with-their.patch) | a mini app that opens in fullscreen covers the screen from its corner, with its ⋮ and ✕ buttons, instead of hanging off the screen (windows) | always on |
