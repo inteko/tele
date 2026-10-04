@@ -18,7 +18,7 @@ for maintainers. releases are built and published by github actions and need the
 
 1. **fold.** follow-up fixes and improvements of a feature are folded into the feature's patch where the result is the same tree, so the queue keeps one patch per feature. anything that can't be folded cleanly stays its own patch.
 2. **baseline.** after a fold, record the previous release folded the same way in `ci/baselines.json`: its tag mapped to `{subject: sha256 of the changed lines}` of each patch. the release notes then compare like with like, and folded patches don't show up as dropped. the next release doesn't need it any more.
-3. **readme.** every new patch has its row, every `with N` points at the right number, and the patch count in the summary is right.
+3. **patch rows.** every new patch has its row in `docs/releases.md`, every `with N` points at the right number, and the patch count at the top is right. `docs/features.md` is regenerated from it with `python ci/features.py`.
 4. **dry run.** the exported queue applies to a fresh clone of the `UPSTREAM` tag with `python tele.py --tdesktop <clean clone> apply`.
 5. **test.** the new and changed features were exercised in a local build. a ci run takes hours, and a broken release reaches every user through the updater.
 
@@ -48,7 +48,7 @@ promote.yml can do step 2 on its own: when the repository variable `PROMOTE_RUN`
 | `tele-update-win64.json`, `tele-update-linux64.json`, `tele-update-macos.json` | the signed update feeds |
 | `tele-changelog.json` | what's new, for the in-app chat |
 
-the release notes list the new, changed and dropped patches with their README rows, the downloads and the full patch table. when the announcement secrets are set, the release is also announced in the project's telegram channel.
+the release notes list the new, changed and dropped patches with their rows from `docs/releases.md`, the downloads and the full patch table. when the announcement secrets are set, the release is also announced in the project's telegram channel.
 
 ## signing and attestation
 

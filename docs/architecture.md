@@ -25,7 +25,10 @@ UPSTREAM                      the tdesktop release tag the queue targets, e.g. v
 patches/tdesktop/*.patch      patches for the tdesktop repository itself
 patches/<submodule>/*.patch   patches for a submodule, e.g. patches/Telegram/lib_ui/
 tele.py                       applies the queue to a tdesktop checkout and exports it back
-README.md                     user docs and the patch table, the source of release notes
+README.md                     what tele is, downloads and highlights
+docs/releases.md              the patch table by release, the source of release notes
+docs/features.md              the same rows by settings page, generated from releases.md
+docs/*.md                     user docs (launch flags, title template, link cleaner, tele server) and these contributor docs
 ci/notes.py                   github release notes and the in-app changelog json
 ci/announce.py                release announcement for the telegram channel
 ci/baselines.json             folded patch hashes of a previous release
@@ -150,7 +153,7 @@ tele rearranges seven menus: the message menu, the chat ⋯ menu, the chat list 
 
 ### tele server client
 
-`tele/tele_badges.*` downloads the public badge list from the server in the `tele-server-url` option and applies checkmarks, custom verification, scam, fake and support marks and extra usernames. `tele/tele_crash.*` routes crash reports to the same server. the protocol is documented in the README section [tele server](../README.md#tele-server). the client only downloads a list and never tells the server which accounts it looks at.
+`tele/tele_badges.*` downloads the public badge list from the server in the `tele-server-url` option and applies checkmarks, custom verification, scam, fake and support marks and extra usernames. `tele/tele_crash.*` routes crash reports to the same server. the protocol is documented in [tele server](server.md). the client only downloads a list and never tells the server which accounts it looks at.
 
 the badge json can carry a `notices` array. `tele/tele_badges.cpp` (`ParseFeed`) parses it, and `tele/tele_server_notices.*` filters notices by build, platform, user key and time, fetches photos and shows toasts. they land in the notification centre, `tele/tele_notices*.*`: a per-account encrypted history (30 days, 300 entries) behind main menu → notifications, which also logs tele toasts, rate limits, updates, sent crash and freeze reports and online alerts.
 
@@ -169,9 +172,9 @@ rate limits come from one hook in `mtproto/mtp_instance.cpp` (`rpcErrorOccured`)
 
 ### what's new
 
-the release notes and the in-app "what's new" come from the same README rows:
+the release notes and the in-app "what's new" come from the same rows in `docs/releases.md`:
 
-1. a README row describes a patch: `| [N](patches/tdesktop/NNNN-....patch) | what it does | where to toggle |`.
+1. a row describes a patch: `| [N](../patches/tdesktop/NNNN-....patch) | what it does | where to toggle |`.
 2. at publish time `ci/notes.py --json` writes `tele-changelog.json` with the new and changed patches, each with its text, where, url and category, and uploads it as a release asset.
 3. after an update, `tele/tele_changelog.cpp` fetches `releases/download/<tag>/tele-changelog.json` for the running build and posts it once per account in a local tele chat (`tele_changelog_chat.*`, `tele_changelog_section.*`), grouped by category. fresh installs and accounts that already saw this build skip it. the `tele-show-changelog` option turns it off.
 
@@ -234,10 +237,10 @@ runs after every finished Build run. when the run succeeded and its id equals th
 
 `ci/notes.py` and `ci/announce.py` compare the patches of the release with those of the previous release. patches are matched by subject and compared by a hash of their changed lines only, so moved context after an upstream bump doesn't count as a change. the result is three lists: new, changed and dropped.
 
-the text of each item comes from README. a row has to match this exactly, on one line:
+the text of each item comes from `docs/releases.md` (or `README.md` for releases older than that file). a row has to match this exactly, on one line:
 
 ```
-| [N](patches/tdesktop/NNNN-subject.patch) | what it does | where to toggle |
+| [N](../patches/tdesktop/NNNN-subject.patch) | what it does | where to toggle |
 ```
 
 - `N` is the patch number, the link is the patch file.
@@ -251,7 +254,7 @@ the text of each item comes from README. a row has to match this exactly, on one
 | `with N` | the category of patch N, for fixes and extensions of another patch. in the app's changelog the location becomes patch N's `tele → …` path without its default, and `see N` / `(see N)` references are dropped, since patch numbers mean nothing there |
 | anything else | `other` |
 
-rows are grouped in README by the release that introduced them, newest first, under a `### [tele N](.../releases/tag/<tag>)` heading. a patch without a row still shows up in the notes, by its subject.
+rows are grouped in `docs/releases.md` by the release that introduced them, newest first, under a `### [tele N](.../releases/tag/<tag>)` heading. links in a row are relative to `docs/`. a patch without a row still shows up in the notes, by its subject. `docs/features.md` holds the same rows grouped by this category, and is regenerated from `docs/releases.md` with `python ci/features.py` before a release.
 
 ## build numbering
 

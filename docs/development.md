@@ -81,7 +81,7 @@ a dev build is a real client on a real account. set it up so a bug can't hurt an
 
 - **separate data.** on windows, tele keeps its data next to the exe, so `out\Debug` gets its own `tdata`. on linux and macos, a dev build would share the data of an installed tele (`~/.local/share/tele`, `~/Library/Application Support/tele`); start it with upstream's `-workdir <folder>` to keep it apart.
 - **test accounts.** use a secondary account, or telegram's test servers: a plain right-click on "add account" offers the test server. test accounts are free and disposable.
-- **tele's own network off.** start with `-teleoffline` to keep tele away from the tele server, github updates and third-party services while you work on something unrelated. `-noteleserver` and `-noteleupdate` turn off one of them. see [launch flags](../README.md#launch-flags).
+- **tele's own network off.** start with `-teleoffline` to keep tele away from the tele server, github updates and third-party services while you work on something unrelated. `-noteleserver` and `-noteleupdate` turn off one of them. see [launch flags](launch-flags.md).
 - **logs.** settings → tele → debug turns debug logs on, opens the logs folder and has an mtproto inspector that browses the logged requests and responses. upstream's `-debug` launch flag also turns debug logs on from the start.
 
 ## making a change
@@ -91,7 +91,7 @@ all work happens in the tdesktop tree, as commits on the `tele` branch.
 1. **edit** in the repository that owns the file: the tdesktop root, or inside the submodule (`Telegram/lib_ui` and so on). follow [conventions](conventions.md).
 2. **build and run** the dev build. exercise the change by hand, with the option on and off. off has to behave exactly like upstream.
 3. **commit.**
-   - a new feature is one new commit at the end of the queue: `feat: <what it does>`. adding it at the end keeps every existing patch number and README link.
+   - a new feature is one new commit at the end of the queue: `feat: <what it does>`. adding it at the end keeps every existing patch number and patch link.
    - a fix or improvement of a patch that isn't released yet goes into that patch's commit: `git commit --fixup <commit>`, then `git rebase -i --autosquash <UPSTREAM tag>`.
    - a fix of a released patch can be its own `fix:` commit at the end. the maintainer may fold it into the feature's patch before the next release.
    - commit changes to a submodule inside the submodule. never commit a moved submodule pointer in the root: `export` rejects it.
@@ -102,31 +102,32 @@ all work happens in the tdesktop tree, as commits on the `tele` branch.
    ```
 
    this rewrites `patches/` from the commits and prints the patch count per group. `git status` in the tele repository shows exactly which patches your change touched. a change in one feature should touch one patch.
-5. **readme row.** for a new patch, add a row to the patch table in `README.md` (see [the readme row](#the-readme-row)).
+5. **patch row.** for a new patch, add a row to the patch table in `docs/releases.md` (see [the patch row](#the-patch-row)).
 6. **dry run** against pristine upstream (see [proving the queue applies](#proving-the-queue-applies)).
-7. **commit and open a pull request** in the tele repository against `next`, with `patches/`, `README.md` and nothing else unless the change needs it:
+7. **commit and open a pull request** in the tele repository against `next`, with `patches/`, `docs/releases.md` and nothing else unless the change needs it:
 
    ```
-   git add -A patches README.md
+   git add -A patches docs/releases.md
    git commit -m "feat: <what it does>"
    ```
 
 to drop a patch, remove its commit (`git rebase -i`) and export again.
 
-## the readme row
+## the patch row
 
-every patch has one row in the table in `README.md`, under the heading of the release that introduces it. release notes and the in-app what's new are generated from these rows, so the format is strict:
+every patch has one row in `docs/releases.md`, under the heading of the release that introduces it. release notes, the in-app what's new and [features](features.md) are generated from these rows, so the format is strict:
 
 ```
-| [109](patches/tdesktop/0109-feat-your-subject.patch) | what it does, in one or two short lowercase sentences | tele → chats, off |
+| [109](../patches/tdesktop/0109-feat-your-subject.patch) | what it does, in one or two short lowercase sentences | tele → chats, off |
 ```
 
-- the link has to be the exact file name `export` wrote.
+- the link has to be the exact file name `export` wrote, relative to `docs/`.
 - "what it does" is written for users: what they see and where, not how it's implemented.
 - "where to toggle" is `tele → <page>` (optionally `→ <row>`) followed by the default (`off`, `on`, `off, needs a restart`), or `always on`, or `with N` for a patch that extends patch N. the page names are the ones in the app: `interface`, `chats`, `messages`, `sending`, `notifications`, `menus`, `privacy`, `profiles and ids`, `bots`, `server`, `backup`, `updates`, `debug`. see [release notes](architecture.md#release-notes) for how this becomes a category.
 - new rows go at the end of the table of the next release. if the newest section belongs to a release that is already out, start a new section above it: `### [tele N](https://github.com/nitreojs/tele/releases/tag/<UPSTREAM>-tele.N)` with the next release number.
-- update the count in `<summary>all N patches, newest release first</summary>`.
-- if the feature changes what a launch flag turns off, or the tele server protocol, update those README sections too.
+- update the count in the `all N patches, newest release first.` line at the top.
+- leave `docs/features.md` alone: its tables are regenerated from `docs/releases.md` with `python ci/features.py` before a release.
+- if the feature changes what a launch flag turns off, or the tele server protocol, update [launch flags](launch-flags.md) or [tele server](server.md) too.
 
 ## proving the queue applies
 

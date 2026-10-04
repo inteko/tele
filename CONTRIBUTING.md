@@ -34,14 +34,14 @@ open an issue first, before writing code. describe what the user sees, where the
 5. test it by hand in the dev build, with the setting on and off.
 6. commit it in the tdesktop tree: one new commit per feature, or a fixup into the patch you're fixing. see [making a change](docs/development.md#making-a-change).
 7. run `python tele.py export` in this repository.
-8. add or update the patch's row in README. see [the readme row](docs/development.md#the-readme-row).
+8. add or update the patch's row in `docs/releases.md`. see [the patch row](docs/development.md#the-patch-row).
 9. check that the queue applies to a clean upstream clone with `python tele.py --tdesktop <clean clone> apply`. see [proving the queue applies](docs/development.md#proving-the-queue-applies).
 10. open a pull request against `next`.
 
 ## pull request checklist
 
 - [ ] one feature or fix per pull request, one patch per feature.
-- [ ] the diff only touches `patches/` and `README.md`, unless the change is about tooling or docs.
+- [ ] the diff only touches `patches/` and `docs/releases.md`, unless the change is about tooling or docs.
 - [ ] no hand-edited `.patch` files: everything came from `python tele.py export`.
 - [ ] `UPSTREAM` unchanged, `.github/` untouched.
 - [ ] builds, and the feature was tested by hand with the setting on and off. say what you tested and on which system.
@@ -50,5 +50,5 @@ open an issue first, before writing code. describe what the user sees, where the
 - [ ] new network use has a setting and respects the launch flags.
 - [ ] ui strings go through `Tele::Lower`, and there are no code comments.
 - [ ] commit subjects are one line, `feat:` or `fix:`, no body or trailers.
-- [ ] a README row in the right format, and the patch count updated.
+- [ ] a row in `docs/releases.md` in the right format, and the patch count updated.
 - [ ] `python tele.py --tdesktop <clean clone> apply` succeeds.

@@ -98,7 +98,7 @@ def message(args):
         '',
         '<tg-button-row>'
         f'<tg-button type="url" url="{args.url}/releases/tag/{args.tag}">download</tg-button>'
-        f'<tg-button type="url" url="{args.url}#patches">all patches</tg-button>'
+        f'<tg-button type="url" url="{args.url}/blob/main/docs/features.md">all patches</tg-button>'
         '</tg-button-row>',
     ]
     return '\n'.join(lines)

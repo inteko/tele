@@ -32,7 +32,7 @@ tele is telegram desktop kept as a patch queue: this repository holds `UPSTREAM`
 3. **build.** follow upstream's `docs/building-*.md` from the checked-out tag. configure with the developer's own `TDESKTOP_API_ID`/`TDESKTOP_API_HASH`, `-D DESKTOP_APP_DISABLE_AUTOUPDATE=ON`, and `TELE_BUILD` left at `0`. see [docs/development.md](docs/development.md#building).
 4. **run and test.** launch the dev build, exercise the feature by hand with the option on and off. if you can't run a gui or log in, say so plainly and hand over exact steps to test; never claim a feature works because it compiles.
 5. **export.** `python tele.py export` in this repository. `git status` here should show only the patch(es) of your change.
-6. **readme row.** add `| [N](patches/tdesktop/NNNN-subject.patch) | what it does | where to toggle |` to the table of the next release in `README.md` and update the patch count in the `<summary>`. format and categories: [docs/development.md](docs/development.md#the-readme-row).
+6. **patch row.** add `| [N](../patches/tdesktop/NNNN-subject.patch) | what it does | where to toggle |` to the table of the next release in `docs/releases.md` and update the patch count at the top. don't edit `docs/features.md`: it's generated from `docs/releases.md` with `python ci/features.py`. format and categories: [docs/development.md](docs/development.md#the-patch-row).
 7. **dry-run apply** on a pristine upstream clone:
 
    ```
@@ -40,7 +40,7 @@ tele is telegram desktop kept as a patch queue: this repository holds `UPSTREAM`
    python tele.py --tdesktop <scratch> apply
    ```
 
-8. **pull request** against `next`, with `patches/` and `README.md`.
+8. **pull request** against `next`, with `patches/` and `docs/releases.md`.
 
 ## known pitfalls
 
@@ -51,7 +51,7 @@ tele is telegram desktop kept as a patch queue: this repository holds `UPSTREAM`
 - **widely included headers** rebuild most of the tree when touched. keep new state in `tele/` files.
 - **`findChildren<T>()` needs `Q_OBJECT` in `T`.** most lib_ui widgets (`Ui::PopupMenu` and friends) have none, so qobject_cast falls back to the nearest base that has it (`RpWidget`) and returns any widget as a `T*`. walk `children()` with `dynamic_cast` instead.
 - **lib_ui buttons react to space and enter** when focused. a focused send button sends on space: think about focus when you add buttons next to text input.
-- **`export` rewrites all of `patches/`.** a commit inserted in the middle renumbers every later patch and breaks their README links. new features go at the end.
+- **`export` rewrites all of `patches/`.** a commit inserted in the middle renumbers every later patch and breaks their links in `docs/releases.md`. new features go at the end.
 - **renaming a commit subject renames its patch** and shows up in release notes as one dropped and one new patch.
 
 ## definition of done
@@ -62,5 +62,5 @@ tele is telegram desktop kept as a patch queue: this repository holds `UPSTREAM`
 - the option is in `tele_options`, on a settings page in a group, has search keywords where useful, and is in the `Specs()` export table.
 - network use respects the launch flags.
 - `python tele.py export` done; only the patch(es) of this change differ.
-- a README row in the right format, and the patch count updated.
+- a row in `docs/releases.md` in the right format, and the patch count updated.
 - the queue applies to a pristine upstream clone with `tele.py --tdesktop <clean clone> apply`.
